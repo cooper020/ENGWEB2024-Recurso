@@ -1,28 +1,20 @@
 doctype html
 html
   head
-    title h1 Detalhes do Autor
+    title Autor
     link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
   body
     header(class="w3-container w3-teal")
-      h1 Detalhes do Autor #{authorId} : #{authorName} Total de Livros: #{totalBooks}
+      h1 Detalhes do Autor #{author} : #{author} Sum: #{somatorio}
     div(class="w3-container")
-      a(href="/", class="w3-button w3-teal") Voltar à página principal
       table(class="w3-table-all w3-hoverable")
         thead
           tr(class="w3-light-grey")
-            th ID Livro
-            th Título
-            th Género
-            th Data de Publicação
-            th Preço
+            th Livros
         tbody
-          each book in books
+          each livro in livros
             tr
-              td: a(href=`/books/${book._id}`, class="w3-text-blue") #{book._id}
-              td #{book.title}
-              td #{book.genres.join(', ')}
-              td #{book.publishDate}
-              td #{book.price}
-    footer.w3-container.w3-teal
-      address Gerado por EngWeb2024 em #{data}
+              td #{livro.author}
+
+      footer.w3-container.w3-teal
+        address Gerado por EngWeb2024 em #{data}

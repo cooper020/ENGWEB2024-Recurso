@@ -28,7 +28,7 @@ router.get('/:id', function(req, res) {
 
 function calcularSomatorioLivros(livros) {
   return livros.reduce((total, livro) => {
-    const preco = parseFloat(livro.precoContratual.replace(',', '.'));
+    const preco = parseFloat(livro.preco.replace(',', '.'));
     return total + preco;
   }, 0);
 }
@@ -51,7 +51,5 @@ router.get('/authors/:idAutor', function(req, res) {
       res.render('error', {error: erro, message: 'Erro ao recuperar os livros'})
     })
 });
-
-module.exports = router;
 
 module.exports = router;
