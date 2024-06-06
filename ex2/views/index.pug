@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title Livros
+    link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
+  body
+    header(class="w3-container w3-teal")
+      h1 Livros
+    div(class="w3-container")
+      table(class="w3-table-all w3-hoverable")
+        thead
+          tr(class="w3-light-grey")
+            th ID
+            th Title
+            th Author
+            th Publish Date
+            th Pages
+        tbody
+          each livro in livros
+            tr
+              td: a(href=`/${livro._id}`, class="w3-text-blue") #{livro._id}
+              td #{livro.title}
+              td: a(href=`/author/${livro.author}`, class="w3-text-blue") #{livro.author}
+              td #{livro.publishDate}
+              td #{livro.pages}
+              
+      footer.w3-container.w3-teal
+        address Gerado por EngWeb2024 em #{data}

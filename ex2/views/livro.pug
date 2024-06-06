@@ -1,0 +1,87 @@
+doctype html
+html
+  head
+    title Detalhes do Livro #{livro._id}
+    link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
+  body
+    header(class="w3-container w3-teal")
+      h1 Detalhes do Livro #{livro._id}
+    div(class="w3-container")
+      a(href="/", class="w3-button w3-teal") Voltar à lista
+      p
+        strong ID Livro:
+        | #{livro._id}
+      p
+        strong Title :
+        | #{livro.title}
+      p
+        strong Series:
+        | #{livro.series}
+      p
+        strong Author:
+        | #{livro.author}
+      p
+        strong Rating:
+        | #{livro.rating}
+      p
+        strong Description:
+        | #{livro.description}
+      p
+        strong Language:
+        | #{livro.language}
+      p
+        strong ISBN:
+        | #{livro.isbn}
+      p
+        strong Genres:
+        | #{livro.genres}
+      p
+        strong Characters:
+        | #{livro.characters}
+      p
+        strong Book Format:
+        | #{livro.bookFormat}
+        p
+        strong Edition:
+        | #{livro.edition}
+      p
+        strong Pages:
+        | #{livro.pages}
+      p
+        strong Publisher:
+        | #{livro.publisher}
+      p
+        strong Publish Date:
+        | #{livro.publishDate}
+      p
+        strong First Publish Date:
+        | #{livro.firstPublishDate}
+      p
+        strong Awards:
+        | #{livro.awards}
+      p
+        strong Num. Ratings:
+        | #{livro.numRatings}
+      p
+        strong Ratings By Stars:
+        | #{livro.ratingsByStars}
+      p
+        strong Liked Percent:
+        | #{livro.likedPercent}
+      p
+        strong Setting:
+        | #{livro.setting}
+      p
+        strong Cover Img:
+        | #{livro.coverImg}
+      p
+        strong bbe Score:
+        | #{livro.bbeScore}
+      p
+        strong bbe Votes:
+        | #{livro.bbeVotes}
+      p
+        strong price:
+        | #{livro.price}
+    footer(class="w3-container w3-teal")
+      address Gerado por EngWeb2024 em #{data}
