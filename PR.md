@@ -20,3 +20,6 @@ Para executar as aplicações envolvidas basta correr o comando `npm i` e npm `s
 
 
 Para a rota GET /books/:id, utiliza-se o valor da string do atributo `_id`
+
+
+O dataset enconta-se zipado de modo a ser possível estar no repositório
