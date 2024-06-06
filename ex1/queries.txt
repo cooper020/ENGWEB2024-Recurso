@@ -1,0 +1,180 @@
+1. Quantos livros têm a palavra Love no título;
+QUERIE: db.livros.countDocuments({ title: /Love/i })
+RESPOSTA: 366
+
+
+2. Quais os títulos dos livros, em ordem alfabética, em que um dos autores tem apelido Austen ?
+QUERIE: db.livros.find({ author: /Austen/i }, { title: 1, _id: 0 }).sort({ title: 1 })
+RESPOSTA:
+[
+  { title: 'Emma' },
+  { title: 'Mansfield Park' },
+  { title: 'Northanger Abbey' },
+  { title: 'Persuasion' },
+  { title: 'Pride and Prejudice' },
+  { title: 'Pride and Prejudice and Zombies' },
+  { title: 'Pride and Prejudice and Zombies: The Graphic Novel' },
+  { title: 'Sense and Sensibility' },
+  { title: 'The Complete Novels' }
+]
+
+
+3. Qual a lista de autores (ordenada alfabeticamente e sem repetições)?
+QUERIE: db.livros.distinct("author").sort()
+RESPOSTA:
+[
+  '#1-3)',
+  '#4-5)',
+  '(Goodreads Author)',
+  ')',
+  '50 Cent',
+  "A'Mera Frieman",
+  'A. Elizabeth Delany',
+  'A. Kirk (Goodreads Author)',
+  'A. Lee Martinez (Goodreads Author)',
+  'A. Meredith Walters (Goodreads Author)',
+  'A. Merritt',
+  'A. Poulin Jr. (Translator)',
+  'A. Roger Merrill',
+  'A. Rose (Goodreads Author)',
+  'A. Vivanti Salmon (Translator)',
+  'A.A. Attanasio (Goodreads Author)',
+  'A.A. Milne',
+  'A.C. Bextor (Goodreads Author)',
+  'A.C. Crispin',
+  'A.C. Gaughen (Goodreads Author)',
+  'A.C. Weisbecker',
+  'A.D. Bloom',
+  'A.D. Zoltan',
+  'A.F. Knott (Goodreads Author)',
+  'A.G. Howard (Goodreads Author)',
+  'A.G. Riddle (Goodreads Author)',
+  'A.H. Holt',
+  'A.H.T. Levi (Introduction)',
+  'A.I. Alexen',
+  'A.J. Betts (Goodreads Author)',
+  'A.J. Bialo',
+  'A.J. Cronin',
+  'A.J. Finn',
+  'A.J. Jacobs',
+  'A.J. Krailsheimer (Translator)',
+  'A.J. Mouse (Goodreads Author)',
+  'A.J.P. Taylor',
+  'A.L. Gibson',
+  'A.L. Jackson (Goodreads Author)',
+  'A.M. Hargrove (Goodreads Author)',
+  'A.M. Homes',
+  'A.M. Madden (Goodreads Author)',
+  'A.M. Robinson (Goodreads Author)',
+  'A.M. Willard',
+  'A.N. Roquelaure',
+  'A.N. Roquelaure (Pseudonym)',
+  'A.N. Roquelaure (pseudonym)',
+  'A.P. Stephens (Goodreads Author)',
+  'A.P.J. Abdul Kalam',
+  'A.R. Torre',
+  'A.S. Byatt',
+  'A.S. Byatt (Editor/Introduction)',
+  'A.S. Byatt (Introduction)',
+  'A.S. King (Goodreads Author)',
+  'A.S.A. Harrison',
+  'A.T. Hatto (Translator)',
+  'A.V. Lebrón (translator)',
+  'A.V. Miller (Translator)',
+  'A.W. Tozer',
+  'A.Z. Manfred',
+  'Aadhavan',
+  'Aarno Peromies (Translator)',
+  'Aaron Asher (Translator)',
+  "Aaron D'Este (Goodreads Author)",
+  'Aaron Jennings (Goodreads Author)',
+  'Aaron Johnston (Goodreads Author)',
+  'Aaron Leichter (Adapter)',
+  'Aaron M. Patterson (Goodreads Author)',
+  'Aaron Parrett (Introduction)',
+  'Aaron Pocock (Illustrator)',
+  'Aaron Pogue (Goodreads Author)',
+  'Aaron Shaun Brennan',
+  'Aaron Sowd (Illustrator)',
+  'Aaron-Michael Hall (Goodreads Author)',
+  'AbCraden (Narrator)',
+  'AbJohnson',
+  'AbMcDonald (Goodreads Author)',
+  'Abbas Maroufi',
+  'Abbas Milani',
+  'Abbi Glines (Goodreads Author)',
+  'Abd al-Rahman al-Kawakibi',
+  "Abdul Mun'im Muhammad",
+  'Abdul Rahman Munif',
+  'Abdul-Jabbar Khan',
+  'Abdurrahman Wahid',
+  'Abeni Morris (Goodreads Author)',
+  'Abhishek Kapoor (Goodreads Author)',
+  'Abi Ketner (Goodreads Author)',
+  'Abigail Barnette',
+  'Abigail Gibbs (Goodreads Author)',
+  'Abigail Haas (Pseudonym)',
+  'Abigail Israel (Translator)',
+  'Abigail Reynolds (Goodreads Author)',
+  'Abigail Roux (Goodreads Author)',
+  'Abigail Stone',
+  'Abigail Thomas',
+  'Abolqasem Ferdowsi',
+  'Abra Ebner (Goodreads Author)',
+  'Abraham Joshua Heschel',
+  'Abraham Lincoln',
+  ... 13543 more items
+]
+
+
+4. Qual a distribuição de livros por género ( genre ) (quantos livros tem cada género)?
+QUERIE: db.livros.aggregate([{ $unwind: "$genres" }, { $group: { _id: "$genres", count: { $sum: 1 } } }])
+RESPOSTA:
+[
+  { _id: 'Angels', count: 282 },
+  { _id: 'Drinking', count: 2 },
+  { _id: 'Romanian Literature', count: 34 },
+  { _id: 'Paranormal', count: 2816 },
+  { _id: 'Islam', count: 134 },
+  { _id: 'World War I', count: 44 },
+  { _id: 'Cultural', count: 164 },
+  { _id: 'Design', count: 33 },
+  { _id: 'Photography', count: 20 },
+  { _id: 'Chemistry', count: 2 },
+  { _id: 'Alexandria', count: 1 },
+  { _id: 'NSFW', count: 1 },
+  { _id: 'Unfinished', count: 335 },
+  { _id: 'Science Nature', count: 5 },
+  { _id: 'Transgender', count: 15 },
+  { _id: 'Paranormal Urban Fantasy', count: 6 },
+  { _id: 'Post Apocalyptic', count: 383 },
+  { _id: 'Firefighters', count: 4 },
+  { _id: 'Batman', count: 24 },
+  { _id: 'Juvenile', count: 688 }
+]
+Type "it" for more
+
+
+5. Quais os títulos dos livros e respetivos isbn, em ordem alfabética de título, em que um dos
+personagens ( characters ) é Sirius Black ?
+QUERIE: db.livros.find({ characters: "Sirius Black" }, { title: 1, isbn: 1, _id: 0 }).sort({ title: 1 })
+RESPOSTA: 
+[
+  {
+    title: 'Harry Potter and the Deathly Hallows',
+    isbn: '9780545010221'
+  },
+  {
+    title: 'Harry Potter and the Goblet of Fire',
+    isbn: '9999999999999'
+  },
+  {
+    title: 'Harry Potter and the Order of the Phoenix',
+    isbn: '9780439358071'
+  },
+  {
+    title: 'Harry Potter and the Prisoner of Azkaban',
+    isbn: '9780439655484'
+  }
+]
+
